@@ -67,7 +67,7 @@ function AccountCard() {
           <Sparkles className="h-4 w-4 text-white" /> Bonus Pendaftaran
         </div>
         <p className="mt-1 text-[11.5px] leading-relaxed text-[#86868b]">
-          Daftar & langsung dapat 100 USDT + faucet tanpa batas.
+          Daftar & langsung dapat 500 USDT. Bonus 250 USDT hanya bisa diklaim satu kali.
         </p>
         <button
           onClick={() => {

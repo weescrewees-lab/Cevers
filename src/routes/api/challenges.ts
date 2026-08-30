@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { getSessionUser } from '@/lib/casino-auth'
-import { challengeClaims, createTx, creditWallet, findChallengeClaim, withTx } from '@/lib/casino-db'
+import { challengeClaims, claimReward, createTx, creditWallet, withTx } from '@/lib/casino-db'
 import { fromUsd } from '@/lib/currencies'
 import { json, readJson } from '@/lib/http'
 
@@ -34,18 +34,24 @@ export const Route = createFileRoute('/api/challenges')({
         const ch = CHALLENGES.find((c) => c.id === body.challengeId)
         if (!ch) return json({ error: 'Tantangan tidak ditemukan' }, 404)
         if (user.totalWager < ch.targetUsd) return json({ error: 'Target wager belum tercapai' }, 400)
-        if (await findChallengeClaim(user.id, ch.id)) return json({ error: 'Sudah diklaim' }, 409)
         const reward = fromUsd('NOIR', ch.reward)
-        await withTx(async (sql) => {
-          await creditWallet(sql, user.id, 'NOIR', reward)
-          await createTx(sql, {
-            userId: user.id,
-            type: 'CHALLENGE',
-            currency: 'NOIR',
-            amount: reward,
-            meta: ch.id,
+        try {
+          await withTx(async (sql) => {
+            const claimed = await claimReward(sql, user.id, ch.id)
+            if (!claimed) throw new Error('Sudah diklaim')
+            await creditWallet(sql, user.id, 'NOIR', reward)
+            await createTx(sql, {
+              userId: user.id,
+              type: 'CHALLENGE',
+              currency: 'NOIR',
+              amount: reward,
+              meta: ch.id,
+            })
           })
-        })
+        } catch (error) {
+          if (error instanceof Error && error.message === 'Sudah diklaim') return json({ error: error.message }, 409)
+          throw error
+        }
         return json({ ok: true, reward, currency: 'NOIR', challenge: ch.name })
       },
     },

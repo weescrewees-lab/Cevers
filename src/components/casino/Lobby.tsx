@@ -12,7 +12,7 @@ import { sound } from '@/lib/sound'
 const BANNERS = [
   {
     title: 'Naikkan levelmu.',
-    sub: 'Klaim koin gratis tiap 30 detik dan selesaikan tantangan untuk mendapatkan bonus faucet hingga 2×.',
+    sub: 'Mulai dengan 500 USDT, klaim bonus 250 USDT satu kali, lalu selesaikan misi harian untuk hadiah tambahan.',
     cta: 'Klaim sekarang',
     route: 'wallet',
     photo: PHOTOS.hero,
@@ -130,7 +130,7 @@ function Hero() {
               <Flame className="h-4 w-4 text-[#ffd60a]" strokeWidth={2} /> Bonus Pendaftaran
             </div>
             <p className="mt-1.5 text-[12px] leading-relaxed text-[#9d9da6]">
-              Daftar & dapat 100 USDT + faucet tiap 30 detik.
+              Daftar & dapat 500 USDT. Bonus 250 USDT bisa diklaim satu kali; hadiah berikutnya lewat misi harian.
             </p>
           </div>
           <button

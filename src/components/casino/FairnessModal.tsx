@@ -61,12 +61,11 @@ export function FairnessModal() {
             <ShieldCheck className="h-5 w-5 text-[#30d158]" strokeWidth={2} /> Provably Fair
           </DialogTitle>
           <DialogDescription className="text-[12.5px] leading-relaxed text-[#9d9da6]">
-            Setiap hasil dihitung dari{' '}
-            <code className="rounded-md border border-white/[0.08] bg-surface-2 px-1.5 py-0.5 font-mono text-[10.5px] text-white">
-              HMAC_SHA256(serverSeed, clientSeed:nonce:cursor)
+            Semua hasil dihitung server dengan HMAC-SHA256. Hash server seed dikunci sebelum taruhan, lalu seed asli
+            dibuka setelah rotasi. Gunakan client seed, nonce, dan seed lama untuk memverifikasi sendiri setiap taruhan.
+            <code className="mt-2 block rounded-md border border-white/[0.08] bg-surface-2 px-2 py-1.5 font-mono text-[10.5px] text-white">
+              HMAC-SHA256(serverSeed, clientSeed:nonce:cursor)
             </code>
-            . Hash server seed ditampilkan sebelum bertaruh; setelah rotasi, seed asli dibuka agar kamu bisa
-            memverifikasi semua taruhan.
           </DialogDescription>
         </DialogHeader>
 
