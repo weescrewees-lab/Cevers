@@ -151,9 +151,8 @@ function Hero() {
 
 const TABS = [
   { id: 'lobi', label: 'Lobi' },
-  { id: 'original', label: 'Asli' },
-  { id: 'slot', label: 'Slot' },
-  { id: 'table', label: 'Meja' },
+  { id: 'original', label: 'Core' },
+  { id: 'crypto', label: 'Crypto' },
 ]
 
 function LiveFeed() {
@@ -245,13 +244,11 @@ export function Lobby() {
   const tab = route.startsWith('cat/') ? route.slice(4) : 'lobi'
 
   const originals = GAMES.filter((g) => g.category === 'original')
-  const slots = GAMES.filter((g) => g.category === 'slot')
-  const tables = GAMES.filter((g) => g.category === 'table')
+  const cryptoGames = GAMES.filter((g) => g.category === 'crypto')
 
   const filterView = (cat: string) => {
     if (cat === 'original') return <GameRow title="Permainan Asli" items={originals} />
-    if (cat === 'slot') return <GameRow title="Slot Populer" items={slots} />
-    if (cat === 'table') return <GameRow title="Permainan Meja" items={tables} />
+    if (cat === 'crypto') return <GameRow title="Crypto Originals" items={cryptoGames} />
     return null
   }
 
@@ -322,8 +319,7 @@ export function Lobby() {
               ) : tab === 'lobi' ? (
                 <>
                   <GameRow title="Permainan CEVERS" items={GAMES.slice(0, 5) as GameDef[]} onViewAll={() => setRoute('cat/original')} />
-                  <GameRow title="Slot Populer" items={slots} onViewAll={() => setRoute('cat/slot')} />
-                  <GameRow title="Permainan Meja" items={tables} onViewAll={() => setRoute('cat/table')} />
+                  <GameRow title="Crypto Originals" items={cryptoGames} onViewAll={() => setRoute('cat/crypto')} />
                 </>
               ) : (
                 filterView(tab)

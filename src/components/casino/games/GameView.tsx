@@ -10,9 +10,6 @@ import { LimboGame } from '@/components/casino/games/LimboGame'
 import { MinesGame } from '@/components/casino/games/MinesGame'
 import { PlinkoGame } from '@/components/casino/games/PlinkoGame'
 import { KenoGame } from '@/components/casino/games/KenoGame'
-import { BlackjackGame } from '@/components/casino/games/BlackjackGame'
-import { RouletteGame } from '@/components/casino/games/RouletteGame'
-import { SlotsGame } from '@/components/casino/games/SlotsGame'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ChevronDown } from 'lucide-react'
 import { sound } from '@/lib/sound'
@@ -347,9 +344,10 @@ export function GameView({ gameId }: { gameId: string }) {
       case 'mines': return <MinesGame />
       case 'plinko': return <PlinkoGame />
       case 'keno': return <KenoGame />
-      case 'blackjack': return <BlackjackGame />
-      case 'roulette': return <RouletteGame />
-      default: return <SlotsGame themeId={theme || 'lucky777'} />
+      case 'btc-crash': return <LimboGame />
+      case 'hash-run': return <PlinkoGame />
+      case 'satoshi-grid': return <KenoGame />
+      default: return <DiceGame />
     }
   }
 
