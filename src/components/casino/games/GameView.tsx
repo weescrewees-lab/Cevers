@@ -10,6 +10,7 @@ import { LimboGame } from '@/components/casino/games/LimboGame'
 import { MinesGame } from '@/components/casino/games/MinesGame'
 import { PlinkoGame } from '@/components/casino/games/PlinkoGame'
 import { KenoGame } from '@/components/casino/games/KenoGame'
+import { BtcCrashGame, HashRunGame, SatoshiGridGame } from '@/components/casino/games/CryptoGames'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ChevronDown } from 'lucide-react'
 import { sound } from '@/lib/sound'
@@ -344,15 +345,15 @@ export function GameView({ gameId }: { gameId: string }) {
       case 'mines': return <MinesGame />
       case 'plinko': return <PlinkoGame />
       case 'keno': return <KenoGame />
-      case 'btc-crash': return <LimboGame />
-      case 'hash-run': return <PlinkoGame />
-      case 'satoshi-grid': return <KenoGame />
+      case 'btc-crash': return <BtcCrashGame />
+      case 'hash-run': return <HashRunGame />
+      case 'satoshi-grid': return <SatoshiGridGame />
       default: return <DiceGame />
     }
   }
 
   return (
-    <div className="mx-auto max-w-7xl p-4 md:p-5">
+    <div className="mx-auto max-w-7xl px-3 py-4 sm:p-5">
       <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
         <button
           onClick={() => setRoute('lobby')}
