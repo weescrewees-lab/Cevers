@@ -100,7 +100,7 @@ export function SlotsGame({ themeId }: { themeId: string }) {
         <div className="mb-5 text-center">
           <div className="text-[19px] font-semibold tracking-[-0.02em] text-white">{theme.name}</div>
           <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/35">
-            NOIR Original · 5 Gulungan · 5 Garis
+            CEVERS Original · 5 Gulungan · 5 Garis
           </div>
         </div>
 

@@ -185,7 +185,7 @@ function LiveFeed() {
         <span className="live-dot h-2 w-2 rounded-full bg-[#30d158]" />
         Taruhan Terbaru
       </div>
-      <div className="max-h-[520px] space-y-1 overflow-y-auto">
+      <div className="max-h-[300px] space-y-1 overflow-y-auto">
         {items.length === 0 && (
           <div className="py-6 text-center text-[11px] text-[#5c5c66]">Memuat…</div>
         )}
@@ -321,7 +321,7 @@ export function Lobby() {
                 )
               ) : tab === 'lobi' ? (
                 <>
-                  <GameRow title="Permainan NOIR" items={GAMES.slice(0, 5) as GameDef[]} onViewAll={() => setRoute('cat/original')} />
+                  <GameRow title="Permainan CEVERS" items={GAMES.slice(0, 5) as GameDef[]} onViewAll={() => setRoute('cat/original')} />
                   <GameRow title="Slot Populer" items={slots} onViewAll={() => setRoute('cat/slot')} />
                   <GameRow title="Permainan Meja" items={tables} onViewAll={() => setRoute('cat/table')} />
                 </>

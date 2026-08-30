@@ -53,7 +53,7 @@ export function TopBar() {
 
         {/* Logo — wordmark */}
         <button onClick={() => setRoute('lobby')} className="flex items-center gap-2" aria-label="Beranda">
-          <span className="text-[16px] font-bold tracking-[-0.02em]">NOIR</span>
+          <span className="text-[16px] font-bold tracking-[-0.02em]">CEVERS</span>
         </button>
 
         {/* Search */}

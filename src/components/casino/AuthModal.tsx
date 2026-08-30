@@ -72,6 +72,7 @@ export function AuthModal() {
       } catch {
         // cadangan opsional — jangan blokir login
       }
+      sessionStorage.removeItem('cevers-manual-logout')
       await refreshMe()
       sound.play('levelup')
       toast.success(
@@ -119,7 +120,7 @@ export function AuthModal() {
       <DialogContent className="max-w-sm rounded-3xl border-white/[0.1] bg-popover p-6 sm:rounded-3xl">
         <DialogHeader className="items-center text-center">
           <DialogTitle className="text-[19px] font-semibold tracking-[-0.02em]">
-            {mode === 'login' ? 'Masuk ke NOIR' : mode === 'register' ? 'Buat akun NOIR' : 'Pulihkan Akun'}
+            {mode === 'login' ? 'Masuk ke CEVERS' : mode === 'register' ? 'Buat akun CEVERS' : 'Pulihkan Akun'}
           </DialogTitle>
           <DialogDescription className="text-[12.5px] text-[#86868b]">
             {mode === 'recover'
@@ -211,7 +212,7 @@ export function AuthModal() {
                 data-testid="recover-code"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="NOIR1-…"
+                placeholder="CEVERS1-…"
                 rows={5}
                 className="w-full resize-none rounded-xl border border-white/[0.08] bg-surface-2 p-3.5 text-[12px] leading-relaxed outline-none transition placeholder:text-[#5c5c66] focus:border-white/30"
               />

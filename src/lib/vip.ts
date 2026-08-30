@@ -14,7 +14,7 @@ export const VIP_TIERS: VipTier[] = [
   { name: 'Gold', minWager: 5_000, color: '#e8c15a', perk: 'Faucet +20%' },
   { name: 'Platinum', minWager: 25_000, color: '#9fd8e8', perk: 'Faucet +35%' },
   { name: 'Diamond', minWager: 100_000, color: '#7cc4ff', perk: 'Faucet +50%' },
-  { name: 'Noir Elite', minWager: 500_000, color: '#b28dff', perk: 'Faucet +100%' },
+  { name: 'CEVERS Elite', minWager: 500_000, color: '#b28dff', perk: 'Faucet +100%' },
 ]
 
 export function vipOf(totalWagerUsd: number): {

@@ -53,7 +53,7 @@ export function ChallengesView() {
     try {
       const res = await apiPost<{ challenge: string; reward: number }>('/api/challenges', { challengeId: id })
       sound.play('levelup')
-      toast.success(`${res.challenge} diklaim! +$${res.reward} dalam NOIR`)
+      toast.success(`${res.challenge} diklaim! +$${res.reward} dalam CEVERS`)
       await Promise.all([load(), refreshMe()])
     } catch (e) {
       toast.error((e as Error).message)
@@ -73,7 +73,7 @@ export function ChallengesView() {
         <span className="font-semibold text-white tabular-nums">
           ${Math.round(totalWager).toLocaleString('id-ID')}
         </span>{' '}
-        — selesaikan misi untuk hadiah NOIR. Progress dan klaim diproses aman di server.
+        — selesaikan misi untuk hadiah CEVERS. Progress dan klaim diproses aman di server.
       </p>
 
       <div className="space-y-3">

@@ -165,7 +165,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
             {tokenCfg.symbol}
           </span>
           <div className="min-w-0 flex-1">
-            <div className="text-[12px] font-semibold">Noir Token</div>
+            <div className="text-[12px] font-semibold">CEVERS Token</div>
             <div className="flex items-center gap-1 text-[10.5px] text-[#86868b]">
               <TrendingUp className="h-3 w-3 text-[#30d158]" />
               $0.298 <span className="font-semibold text-[#30d158]">+3.15%</span>
@@ -233,7 +233,7 @@ function MobileBook() {
         {/* Header buku */}
         <div className="flex items-center justify-between px-4 pb-2 pt-5">
           <div className="flex items-center gap-2.5">
-            <span className="text-[15px] font-bold tracking-[-0.02em]">NOIR</span>
+            <span className="text-[15px] font-bold tracking-[-0.02em]">CEVERS</span>
           </div>
           <button
             onClick={() => setMobileNavOpen(false)}

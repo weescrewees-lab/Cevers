@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Droplets, ArrowLeftRight, History } from 'lucide-react'
+import { Droplets, ArrowLeftRight, History, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { useCasino } from '@/lib/store'
 import { apiGet, apiPost } from '@/lib/apiClient'
@@ -63,6 +63,8 @@ export function WalletView() {
   }
 
   const vip = vipOf(user.totalWager)
+  const hasClaimedWelcome = txs.some((tx) => tx.type === 'FAUCET')
+  const hasLuckyAsset = txs.some((tx) => tx.type === 'ASSET')
 
   const claim = async () => {
     setBusy(true)
@@ -135,14 +137,12 @@ export function WalletView() {
             )}
           </p>
         </div>
-        <button
-          onClick={claim}
-          disabled={busy}
-          className="btn-primary h-11 gap-2 px-5 text-[13.5px]"
-        >
-          <Droplets className="h-4 w-4" />
-          {busy ? 'Memproses...' : `Klaim bonus satu kali ${FAUCET_AMOUNTS.USDT} USDT`}
-        </button>
+        {!hasClaimedWelcome && (
+          <button onClick={claim} disabled={busy} className="btn-primary h-11 gap-2 px-5 text-[13.5px]">
+            <Droplets className="h-4 w-4" />
+            {busy ? 'Memproses...' : `Klaim bonus satu kali ${FAUCET_AMOUNTS.USDT} USDT`}
+          </button>
+        )}
       </div>
 
       {/* Kartu saldo */}
@@ -176,6 +176,11 @@ export function WalletView() {
             </div>
           )
         })}
+      </div>
+
+      <div className="mt-5 flex items-center justify-between gap-4 rounded-3xl border border-[#7C5CFC]/25 bg-[#7C5CFC]/[0.07] p-5">
+        <div><div className="flex items-center gap-2 text-[13.5px] font-semibold"><Sparkles className="h-4 w-4 text-[#7C5CFC]" /> CEVERS Lucky Asset</div><p className="mt-1 text-[12px] text-[#a9a2c9]">Asset premium seharga 750 USDT. Aktif permanen dan memberi bonus peluang kecil yang tetap dihitung dari seed fair server.</p></div>
+        {hasLuckyAsset ? <span className="rounded-full bg-[#30d158]/15 px-3 py-1.5 text-[11px] font-semibold text-[#30d158]">Aktif</span> : <button onClick={async () => { setBusy(true); try { await apiPost('/api/wallet/luck', {}); toast.success('Lucky Asset aktif'); await refreshMe(); await load() } catch (e) { toast.error((e as Error).message) } finally { setBusy(false) } }} disabled={busy} className="btn-primary shrink-0 px-4 text-[12px]">Beli 750 USDT</button>}
       </div>
 
       {/* Trade antar player */}
