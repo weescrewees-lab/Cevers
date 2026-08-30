@@ -33,6 +33,9 @@ export function WalletView() {
   const [swapFrom, setSwapFrom] = useState('USDT')
   const [swapTo, setSwapTo] = useState('NOIR')
   const [swapAmount, setSwapAmount] = useState(10)
+  const [tradeUsername, setTradeUsername] = useState('')
+  const [tradeAmount, setTradeAmount] = useState(0)
+  const [tradeCurrency, setTradeCurrency] = useState('USDT')
 
   const load = async () => {
     try {
@@ -67,6 +70,22 @@ export function WalletView() {
       const res = await apiPost<{ currency: string; amount: number }>('/api/wallet/faucet', { currency: 'USDT' })
       sound.play('cashout')
       toast.success(`+${res.amount} ${res.currency} diklaim!`)
+      await refreshMe()
+      await load()
+    } catch (e) {
+      toast.error((e as Error).message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const trade = async () => {
+    setBusy(true)
+    try {
+      await apiPost('/api/trade', { username: tradeUsername, currency: tradeCurrency, amount: tradeAmount, idempotencyKey: crypto.randomUUID() })
+      toast.success(`Trade ${tradeCurrency} berhasil dikirim`)
+      setTradeUsername('')
+      setTradeAmount(0)
       await refreshMe()
       await load()
     } catch (e) {
@@ -157,6 +176,18 @@ export function WalletView() {
             </div>
           )
         })}
+      </div>
+
+      {/* Trade antar player */}
+      <div className="mt-5 rounded-3xl border border-white/[0.08] bg-surface-2 p-5">
+        <div className="mb-1 flex items-center gap-2 text-[13.5px] font-semibold">Trade antar player asli</div>
+        <p className="mb-4 text-[12px] text-[#86868b]">Transfer langsung, tervalidasi server, dan tercatat aman di Neon.</p>
+        <div className="grid gap-3 md:grid-cols-[1.4fr_0.7fr_0.8fr_auto] md:items-end">
+          <label className="text-[10.5px] font-medium uppercase tracking-wider text-[#86868b]">Username penerima<input value={tradeUsername} onChange={(e) => setTradeUsername(e.target.value)} placeholder="username player" className="mt-1.5 h-11 w-full rounded-xl border border-white/[0.08] bg-surface-3 px-3 text-[13px] outline-none focus:border-white/30" /></label>
+          <label className="text-[10.5px] font-medium uppercase tracking-wider text-[#86868b]">Koin<select value={tradeCurrency} onChange={(e) => setTradeCurrency(e.target.value)} className="mt-1.5 h-11 w-full rounded-xl border border-white/[0.08] bg-surface-3 px-3 text-[13px] font-semibold outline-none">{CURRENCY_LIST.map((c) => <option key={c}>{c}</option>)}</select></label>
+          <label className="text-[10.5px] font-medium uppercase tracking-wider text-[#86868b]">Jumlah<input type="number" min="0" step="any" value={tradeAmount || ''} onChange={(e) => setTradeAmount(Number(e.target.value) || 0)} className="mt-1.5 h-11 w-full rounded-xl border border-white/[0.08] bg-surface-3 px-3 font-mono text-[13px] outline-none focus:border-white/30" /></label>
+          <button onClick={trade} disabled={busy || !tradeUsername || tradeAmount <= 0} className="btn-primary h-11 px-5 text-[13px]">Kirim trade</button>
+        </div>
       </div>
 
       {/* Swap + transaksi */}

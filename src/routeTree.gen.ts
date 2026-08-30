@@ -14,6 +14,7 @@ import { Route as ApiBetsRouteImport } from './routes/api/bets'
 import { Route as ApiChallengesRouteImport } from './routes/api/challenges'
 import { Route as ApiFairRouteImport } from './routes/api/fair'
 import { Route as ApiFeedRouteImport } from './routes/api/feed'
+import { Route as ApiTradeRouteImport } from './routes/api/trade'
 import { Route as ApiWalletRouteImport } from './routes/api/wallet'
 import { Route as ApiAuthLoginRouteImport } from './routes/api/auth/login'
 import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
@@ -55,6 +56,11 @@ const ApiFairRoute = ApiFairRouteImport.update({
 const ApiFeedRoute = ApiFeedRouteImport.update({
   id: '/api/feed',
   path: '/api/feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTradeRoute = ApiTradeRouteImport.update({
+  id: '/api/trade',
+  path: '/api/trade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiWalletRoute = ApiWalletRouteImport.update({
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/api/challenges': typeof ApiChallengesRoute
   '/api/fair': typeof ApiFairRoute
   '/api/feed': typeof ApiFeedRoute
+  '/api/trade': typeof ApiTradeRoute
   '/api/wallet': typeof ApiWalletRouteWithChildren
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/api/challenges': typeof ApiChallengesRoute
   '/api/fair': typeof ApiFairRoute
   '/api/feed': typeof ApiFeedRoute
+  '/api/trade': typeof ApiTradeRoute
   '/api/wallet': typeof ApiWalletRouteWithChildren
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/api/challenges': typeof ApiChallengesRoute
   '/api/fair': typeof ApiFairRoute
   '/api/feed': typeof ApiFeedRoute
+  '/api/trade': typeof ApiTradeRoute
   '/api/wallet': typeof ApiWalletRouteWithChildren
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/api/challenges'
     | '/api/fair'
     | '/api/feed'
+    | '/api/trade'
     | '/api/wallet'
     | '/api/auth/login'
     | '/api/auth/logout'
@@ -248,6 +258,7 @@ export interface FileRouteTypes {
     | '/api/challenges'
     | '/api/fair'
     | '/api/feed'
+    | '/api/trade'
     | '/api/wallet'
     | '/api/auth/login'
     | '/api/auth/logout'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/api/challenges'
     | '/api/fair'
     | '/api/feed'
+    | '/api/trade'
     | '/api/wallet'
     | '/api/auth/login'
     | '/api/auth/logout'
@@ -297,6 +309,7 @@ export interface RootRouteChildren {
   ApiChallengesRoute: typeof ApiChallengesRoute
   ApiFairRoute: typeof ApiFairRoute
   ApiFeedRoute: typeof ApiFeedRoute
+  ApiTradeRoute: typeof ApiTradeRoute
   ApiWalletRoute: typeof ApiWalletRouteWithChildren
   ApiAuthLoginRoute: typeof ApiAuthLoginRoute
   ApiAuthLogoutRoute: typeof ApiAuthLogoutRoute
@@ -349,6 +362,13 @@ declare module '@tanstack/react-router' {
       path: '/api/feed'
       fullPath: '/api/feed'
       preLoaderRoute: typeof ApiFeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/trade': {
+      id: '/api/trade'
+      path: '/api/trade'
+      fullPath: '/api/trade'
+      preLoaderRoute: typeof ApiTradeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/wallet': {
@@ -493,6 +513,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiChallengesRoute: ApiChallengesRoute,
   ApiFairRoute: ApiFairRoute,
   ApiFeedRoute: ApiFeedRoute,
+  ApiTradeRoute: ApiTradeRoute,
   ApiWalletRoute: ApiWalletRouteWithChildren,
   ApiAuthLoginRoute: ApiAuthLoginRoute,
   ApiAuthLogoutRoute: ApiAuthLogoutRoute,

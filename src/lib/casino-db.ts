@@ -445,8 +445,9 @@ export async function listFeed(take = 25): Promise<(CasinoBet & { username: stri
   return db.query<CasinoBet & { username: string }>(
     `select b.id, b.user_id as "userId", b.game, b.currency, b.amount, b.multiplier, b.payout, b.win, b.state, b.nonce,
             b.created_at as "createdAt", u.username
-     from casino_bets b
+            from casino_bets b
      join casino_users u on u.id = b.user_id
+     where u.is_bot = false
      order by b.created_at desc
      limit $1`,
     [take],
