@@ -70,7 +70,7 @@ export function GameCard({ game, size = 'md' }: { game: GameDef; size?: 'md' | '
           <div className="mt-0.5 flex items-center justify-between">
             <span className="text-[10.5px] font-medium text-white/60">{game.edge}</span>
             <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/40">
-              NOIR
+              CEVERS
             </span>
           </div>
         </div>

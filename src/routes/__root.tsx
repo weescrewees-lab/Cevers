@@ -4,14 +4,14 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "NOIR";
+const APP_NAME = "CEVERS";
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "NOIR | Kasino Sosial — Koin Virtual" },
+      { title: "CEVERS | Kasino Sosial — Koin Virtual" },
       {
         name: "description",
         content:

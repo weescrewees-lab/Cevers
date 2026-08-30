@@ -200,7 +200,7 @@ export const useCasino = create<CasinoState>((set, get) => ({
 
     // PermaSync — sesi hilang (mis. setelah redeploy server): pulihkan akun
     // otomatis dari cadangan terenkripsi di perangkat, tanpa input pengguna.
-    if (!get().user) {
+    if (!get().user && sessionStorage.getItem('cevers-manual-logout') !== '1') {
       const restored = await autoRestoreFromDevice()
       if (restored) {
         await get().refreshMe()
@@ -217,6 +217,7 @@ export const useCasino = create<CasinoState>((set, get) => ({
   logout: async () => {
     await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
     forgetCurrentUser()
+    sessionStorage.setItem('cevers-manual-logout', '1')
     set({ user: null, route: 'lobby', mobileNavOpen: false })
   },
 }))

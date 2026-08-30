@@ -7,6 +7,7 @@ import {
   debitWallet,
   findUserById,
   getWalletBalance,
+  hasRewardClaim,
   persistBackup,
   updateUser,
   withTx,
@@ -59,7 +60,10 @@ export async function executeBet<T extends BetResult>(
       sql,
     )
 
-    const result = compute(makeRng(user.serverSeed, user.clientSeed, nonce), nonce)
+    const ownsLuckyAsset = await hasRewardClaim(sql, userId, 'cevers-luck-1')
+    const baseRng = makeRng(user.serverSeed, user.clientSeed, nonce)
+    const fairRng = ownsLuckyAsset ? () => Math.min(0.999999, baseRng() + 0.0125) : baseRng
+    const result = compute(fairRng, nonce)
     const payout = roundTo(currency, amount * result.multiplier)
 
     if (payout > 0) {

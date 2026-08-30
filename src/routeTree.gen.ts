@@ -31,6 +31,7 @@ import { Route as ApiGamesSlotsRouteImport } from './routes/api/games/slots'
 import { Route as ApiSyncRestoreRouteImport } from './routes/api/sync/restore'
 import { Route as ApiSyncSnapshotRouteImport } from './routes/api/sync/snapshot'
 import { Route as ApiWalletFaucetRouteImport } from './routes/api/wallet/faucet'
+import { Route as ApiWalletLuckRouteImport } from './routes/api/wallet/luck'
 import { Route as ApiWalletSwapRouteImport } from './routes/api/wallet/swap'
 
 const IndexRoute = IndexRouteImport.update({
@@ -143,6 +144,11 @@ const ApiWalletFaucetRoute = ApiWalletFaucetRouteImport.update({
   path: '/faucet',
   getParentRoute: () => ApiWalletRoute,
 } as any)
+const ApiWalletLuckRoute = ApiWalletLuckRouteImport.update({
+  id: '/luck',
+  path: '/luck',
+  getParentRoute: () => ApiWalletRoute,
+} as any)
 const ApiWalletSwapRoute = ApiWalletSwapRouteImport.update({
   id: '/swap',
   path: '/swap',
@@ -172,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
+  '/api/wallet/luck': typeof ApiWalletLuckRoute
   '/api/wallet/swap': typeof ApiWalletSwapRoute
 }
 export interface FileRoutesByTo {
@@ -197,6 +204,7 @@ export interface FileRoutesByTo {
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
+  '/api/wallet/luck': typeof ApiWalletLuckRoute
   '/api/wallet/swap': typeof ApiWalletSwapRoute
 }
 export interface FileRoutesById {
@@ -223,6 +231,7 @@ export interface FileRoutesById {
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
+  '/api/wallet/luck': typeof ApiWalletLuckRoute
   '/api/wallet/swap': typeof ApiWalletSwapRoute
 }
 export interface FileRouteTypes {
@@ -250,6 +259,7 @@ export interface FileRouteTypes {
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
+    | '/api/wallet/luck'
     | '/api/wallet/swap'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -275,6 +285,7 @@ export interface FileRouteTypes {
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
+    | '/api/wallet/luck'
     | '/api/wallet/swap'
   id:
     | '__root__'
@@ -300,6 +311,7 @@ export interface FileRouteTypes {
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
+    | '/api/wallet/luck'
     | '/api/wallet/swap'
   fileRoutesById: FileRoutesById
 }
@@ -483,6 +495,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiWalletFaucetRouteImport
       parentRoute: typeof ApiWalletRoute
     }
+    '/api/wallet/luck': {
+      id: '/api/wallet/luck'
+      path: '/luck'
+      fullPath: '/api/wallet/luck'
+      preLoaderRoute: typeof ApiWalletLuckRouteImport
+      parentRoute: typeof ApiWalletRoute
+    }
     '/api/wallet/swap': {
       id: '/api/wallet/swap'
       path: '/swap'
@@ -495,11 +514,13 @@ declare module '@tanstack/react-router' {
 
 interface ApiWalletRouteChildren {
   ApiWalletFaucetRoute: typeof ApiWalletFaucetRoute
+  ApiWalletLuckRoute: typeof ApiWalletLuckRoute
   ApiWalletSwapRoute: typeof ApiWalletSwapRoute
 }
 
 const ApiWalletRouteChildren: ApiWalletRouteChildren = {
   ApiWalletFaucetRoute: ApiWalletFaucetRoute,
+  ApiWalletLuckRoute: ApiWalletLuckRoute,
   ApiWalletSwapRoute: ApiWalletSwapRoute,
 }
 

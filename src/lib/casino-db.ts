@@ -488,6 +488,11 @@ export async function claimReward(sql: Sql, userId: string, rewardKey: string): 
   return rows.length > 0
 }
 
+export async function hasRewardClaim(sql: Sql, userId: string, rewardKey: string): Promise<boolean> {
+  const rows = await sql.query<{ user_id: string }>(`select user_id from casino_reward_claims where user_id = $1 and reward_key = $2 limit 1`, [userId, rewardKey])
+  return rows.length > 0
+}
+
 export async function challengeClaims(userId: string): Promise<string[]> {
   const db = await q()
   const rows = await db.query<{ meta: string | null }>(
