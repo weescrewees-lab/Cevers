@@ -66,14 +66,14 @@ export function ChallengesView() {
     <div className="mx-auto max-w-4xl p-4 md:p-5">
       <div className="mb-1 flex items-center gap-2.5">
         <Trophy className="h-5 w-5 text-[#ffd60a]" strokeWidth={2} />
-        <h2 className="text-[26px] font-semibold tracking-[-0.025em]">Tantangan Wager</h2>
+        <h2 className="text-[26px] font-semibold tracking-[-0.025em]">Misi Harian</h2>
       </div>
       <p className="mb-6 text-[13.5px] text-[#9d9da6]">
         Total wager kamu:{' '}
         <span className="font-semibold text-white tabular-nums">
           ${Math.round(totalWager).toLocaleString('id-ID')}
         </span>{' '}
-        — capai milestone untuk hadiah NOIR.
+        — selesaikan misi untuk hadiah NOIR. Progress dan klaim diproses aman di server.
       </p>
 
       <div className="space-y-3">

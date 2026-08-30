@@ -20,7 +20,7 @@ export function GameCard({ game, size = 'md' }: { game: GameDef; size?: 'md' | '
     <div className="group relative">
       <button
         onClick={() => setRoute(`game/${game.id}`)}
-        className={`game-tile relative w-full overflow-hidden rounded-2xl bg-[#0e0e10] text-left ${
+        className={`game-tile relative w-full overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#0e0e10] text-left shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1 hover:border-white/[0.2] ${
           size === 'md' ? 'aspect-[3/4]' : 'aspect-square'
         }`}
       >

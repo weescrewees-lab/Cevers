@@ -245,7 +245,7 @@ export async function createUser(input: {
   wallets?: { currency: string; balance: number }[]
 }): Promise<CasinoUser> {
   const id = input.id ?? newId()
-  const wallets = input.wallets ?? CURRENCY_LIST.map((c) => ({ currency: c, balance: c === 'USDT' ? 100 : 0 }))
+  const wallets = input.wallets ?? CURRENCY_LIST.map((c) => ({ currency: c, balance: c === 'USDT' ? 500 : 0 }))
   await withTx(async (sql) => {
     await sql.query(
       `insert into casino_users
@@ -476,6 +476,15 @@ export async function countTx(userId: string): Promise<number> {
     [userId],
   )
   return rows[0]?.n ?? 0
+}
+
+export async function claimReward(sql: Sql, userId: string, rewardKey: string): Promise<boolean> {
+  const rows = await sql.query<{ user_id: string }>(
+    `insert into casino_reward_claims (user_id, reward_key) values ($1, $2)
+     on conflict (user_id, reward_key) do nothing returning user_id`,
+    [userId, rewardKey],
+  )
+  return rows.length > 0
 }
 
 export async function challengeClaims(userId: string): Promise<string[]> {

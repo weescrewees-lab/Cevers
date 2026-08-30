@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Droplets, ArrowLeftRight, History, Clock } from 'lucide-react'
+import { Droplets, ArrowLeftRight, History } from 'lucide-react'
 import { toast } from 'sonner'
 import { useCasino } from '@/lib/store'
 import { apiGet, apiPost } from '@/lib/apiClient'
-import { CURRENCIES, CURRENCY_LIST, FAUCET_AMOUNTS, FAUCET_COOLDOWN_MS, formatAmount } from '@/lib/currencies'
+import { CURRENCIES, CURRENCY_LIST, FAUCET_AMOUNTS, formatAmount } from '@/lib/currencies'
 import { vipOf } from '@/lib/vip'
 import { sound } from '@/lib/sound'
 
@@ -19,7 +19,7 @@ interface Tx {
 }
 
 const TYPE_LABEL: Record<string, string> = {
-  FAUCET: 'Faucet Gratis',
+  FAUCET: 'Bonus Satu Kali',
   BONUS: 'Bonus',
   SWAP: 'Swap',
   CHALLENGE: 'Tantangan',
@@ -29,7 +29,6 @@ export function WalletView() {
   const { user, refreshMe, setAuthOpen } = useCasino()
   const [wallets, setWallets] = useState<{ currency: string; balance: number; usdValue: number }[]>([])
   const [txs, setTxs] = useState<Tx[]>([])
-  const [cooldown, setCooldown] = useState(0)
   const [busy, setBusy] = useState(false)
   const [swapFrom, setSwapFrom] = useState('USDT')
   const [swapTo, setSwapTo] = useState('NOIR')
@@ -48,15 +47,6 @@ export function WalletView() {
   useEffect(() => {
     load()
   }, [])
-
-  useEffect(() => {
-    if (!user?.lastFaucetAt) return
-    const t = setInterval(() => {
-      const remain = FAUCET_COOLDOWN_MS - (Date.now() - new Date(user.lastFaucetAt!).getTime())
-      setCooldown(Math.max(0, Math.ceil(remain / 1000)))
-    }, 500)
-    return () => clearInterval(t)
-  }, [user?.lastFaucetAt])
 
   if (!user) {
     return (
@@ -128,17 +118,11 @@ export function WalletView() {
         </div>
         <button
           onClick={claim}
-          disabled={busy || cooldown > 0}
+          disabled={busy}
           className="btn-primary h-11 gap-2 px-5 text-[13.5px]"
         >
           <Droplets className="h-4 w-4" />
-          {cooldown > 0 ? (
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4" /> {cooldown}s
-            </span>
-          ) : (
-            `Klaim ${FAUCET_AMOUNTS.USDT} USDT`
-          )}
+          {busy ? 'Memproses...' : `Klaim bonus satu kali ${FAUCET_AMOUNTS.USDT} USDT`}
         </button>
       </div>
 

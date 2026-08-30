@@ -176,7 +176,7 @@ export function AuthModal() {
                 />
               </div>
               <button onClick={submit} disabled={busy} className="btn-primary h-11 w-full text-[14px]">
-                {busy ? 'Memproses…' : mode === 'login' ? 'Masuk' : 'Buat Akun + 100 USDT'}
+                {busy ? 'Memproses…' : mode === 'login' ? 'Masuk' : 'Buat Akun + 500 USDT'}
               </button>
               <div className="flex items-center justify-between gap-2 text-[11px]">
                 <p className="flex items-center gap-1.5 text-[#6a6a73]">
