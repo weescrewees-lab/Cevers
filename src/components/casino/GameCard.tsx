@@ -45,33 +45,10 @@ export function GameCard({ game, size = 'md' }: { game: GameDef; size?: 'md' | '
           style={{ background: `linear-gradient(90deg, transparent, ${game.tint}55, transparent)` }}
         />
 
-        {/* Pemain live */}
-        <div className="absolute left-2.5 top-2.5 z-10 flex items-center gap-1.5 rounded-full bg-black/55 px-2 py-1 text-[10px] font-medium text-white/85 backdrop-blur-sm">
-          <span className="live-dot h-1.5 w-1.5 rounded-full bg-[#30d158]" />
-          {game.players.toLocaleString('id-ID')}
-        </div>
-
-        {/* Ikon kecil di pojok kanan bawah — kontinuitas identitas game */}
-        <div
-          className="absolute bottom-3 right-3 z-10 flex h-7 w-7 items-center justify-center rounded-lg border backdrop-blur-sm transition-transform duration-300 group-hover:scale-110"
-          style={{
-            backgroundColor: `${game.tint}1f`,
-            borderColor: `${game.tint}45`,
-          }}
-        >
-          <Icon className="h-3.5 w-3.5" style={{ color: game.tint }} strokeWidth={1.9} />
-        </div>
-
-        {/* Nama + RTP */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 pr-12">
-          <div className="truncate text-[13.5px] font-semibold tracking-[-0.01em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-            {game.name}
-          </div>
-          <div className="mt-0.5 flex items-center justify-between">
-            <span className="text-[10.5px] font-medium text-white/60">{game.edge}</span>
-            <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-white/40">
-              CEVERS
-            </span>
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center gap-2">
+            <Icon className="h-4 w-4" style={{ color: game.tint }} strokeWidth={1.9} />
+            <div className="truncate text-[14px] font-semibold tracking-[-0.01em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">{game.name}</div>
           </div>
         </div>
       </button>

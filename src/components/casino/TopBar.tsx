@@ -239,10 +239,8 @@ function searchToGame(q: string): string {
     limbo: 'limbo',
     plinko: 'plinko',
     keno: 'keno',
-    blackjack: 'blackjack',
-    roulette: 'roulette',
-    slot: 'slots-lucky777', slots: 'slots-lucky777',
-    lucky: 'slots-lucky777', fruit: 'slots-fruitparty', firaun: 'slots-pharaoh', neon: 'slots-neon',
+    btc: 'btc-crash', crash: 'btc-crash',
+    hash: 'hash-run', satoshi: 'satoshi-grid', crypto: 'btc-crash',
   }
   for (const [k, v] of Object.entries(map)) {
     if (lower.includes(k)) return v

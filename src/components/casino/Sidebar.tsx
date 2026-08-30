@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import {
-  Home, Star, History, Trophy, Wallet, ShieldCheck, Gamepad2, Layers, Spade,
+  Home, Star, History, Trophy, Wallet, ShieldCheck, Gamepad2, Layers,
   User, X, Sparkles, ChevronRight, TrendingUp,
 } from 'lucide-react'
 import { useCasino } from '@/lib/store'
@@ -136,9 +136,8 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
       <NavItem icon={Trophy} label="Tantangan" active={route === 'challenges'} onClick={() => nav('challenges')} />
 
       <SectionLabel>Permainan</SectionLabel>
-      <NavItem icon={Gamepad2} label="Asli" active={route === 'cat/original'} tint="#30d158" onClick={() => nav('cat/original')} />
-      <NavItem icon={Layers} label="Slot" active={route === 'cat/slot'} tint="#bf5af2" onClick={() => nav('cat/slot')} />
-      <NavItem icon={Spade} label="Permainan Meja" active={route === 'cat/table'} tint="#ff9f0a" onClick={() => nav('cat/table')} />
+      <NavItem icon={Gamepad2} label="Core" active={route === 'cat/original'} tint="#30d158" onClick={() => nav('cat/original')} />
+      <NavItem icon={Layers} label="Crypto" active={route === 'cat/crypto'} tint="#f7931a" onClick={() => nav('cat/crypto')} />
 
       <SectionLabel>Akun</SectionLabel>
       <NavItem icon={Wallet} label="Dompet" active={route === 'wallet'} onClick={() => nav('wallet')} />
