@@ -21,6 +21,8 @@ export type CasinoUser = {
   isBot: boolean
   createdAt: Date
   syncedAt: Date | null
+  avatarPath: string | null
+  verification: 'blue' | 'red' | null
   wallets: CasinoWallet[]
 }
 
@@ -93,6 +95,8 @@ type UserRaw = {
   isBot: boolean
   createdAt: Date | string
   syncedAt: Date | string | null
+  avatarPath: string | null
+  verification: 'blue' | 'red' | null
 }
 
 const USER_COLS = `id, username, email,
@@ -105,7 +109,9 @@ const USER_COLS = `id, username, email,
   last_faucet_at as "lastFaucetAt",
   is_bot as "isBot",
   created_at as "createdAt",
-  synced_at as "syncedAt"`
+  synced_at as "syncedAt",
+  avatar_path as "avatarPath",
+  verification`
 
 function asDate(v: Date | string | null | undefined): Date | null {
   if (!v) return null
@@ -120,6 +126,8 @@ function mapUser(row: UserRaw, wallets: CasinoWallet[] = []): CasinoUser {
     lastFaucetAt: asDate(row.lastFaucetAt),
     createdAt: asDate(row.createdAt) ?? new Date(0),
     syncedAt: asDate(row.syncedAt),
+    avatarPath: row.avatarPath ?? null,
+    verification: row.verification ?? null,
     wallets,
   }
 }
@@ -291,6 +299,8 @@ export async function updateUser(
     totalBets: number
     lastFaucetAt: Date | null
     syncedAt: Date | null
+    avatarPath: string | null
+    verification: 'blue' | 'red' | null
   }>,
   sql?: Sql,
 ): Promise<void> {
@@ -310,6 +320,8 @@ export async function updateUser(
   if (data.totalBets !== undefined) add('total_bets', data.totalBets)
   if (data.lastFaucetAt !== undefined) add('last_faucet_at', data.lastFaucetAt)
   if (data.syncedAt !== undefined) add('synced_at', data.syncedAt)
+  if (data.avatarPath !== undefined) add('avatar_path', data.avatarPath)
+  if (data.verification !== undefined) add('verification', data.verification)
   if (sets.length === 0) return
   params.push(id)
   await db.query(`update casino_users set ${sets.join(', ')} where id = $${params.length}`, params)

@@ -9,12 +9,12 @@ export interface VipTier {
 }
 
 export const VIP_TIERS: VipTier[] = [
-  { name: 'Bronze', minWager: 0, color: '#c2936b', perk: 'Faucet dasar' },
-  { name: 'Silver', minWager: 1_000, color: '#c8cdd6', perk: 'Faucet +10%' },
-  { name: 'Gold', minWager: 5_000, color: '#e8c15a', perk: 'Faucet +20%' },
-  { name: 'Platinum', minWager: 25_000, color: '#9fd8e8', perk: 'Faucet +35%' },
-  { name: 'Diamond', minWager: 100_000, color: '#7cc4ff', perk: 'Faucet +50%' },
-  { name: 'CEVERS Elite', minWager: 500_000, color: '#b28dff', perk: 'Faucet +100%' },
+  { name: 'Bronze', minWager: 0, color: '#b87333', perk: 'Faucet dasar' },
+  { name: 'Silver', minWager: 1_000, color: '#9ca3af', perk: 'Faucet +10%' },
+  { name: 'Gold', minWager: 5_000, color: '#f0b90b', perk: 'Faucet +20%' },
+  { name: 'Platinum', minWager: 25_000, color: '#00c2ff', perk: 'Faucet +35%' },
+  { name: 'Diamond', minWager: 100_000, color: '#6d7cff', perk: 'Faucet +50%' },
+  { name: 'CEVERS Elite', minWager: 500_000, color: '#e56bff', perk: 'Faucet +100%' },
 ]
 
 export function vipOf(totalWagerUsd: number): {

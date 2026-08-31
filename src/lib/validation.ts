@@ -30,6 +30,11 @@ export const loginSchema = z.object({
 
 export const currencyEnum = z.enum(CURRENCY_LIST as [string, ...string[]])
 
+export const chestSchema = z.object({
+  currency: currencyEnum,
+  amount: z.number().positive('Taruhan harus positif').finite(),
+})
+
 export const diceSchema = z.object({
   currency: currencyEnum,
   amount: z.number().positive('Taruhan harus positif').finite(),
