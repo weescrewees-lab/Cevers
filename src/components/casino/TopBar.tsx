@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   Search, Wallet as WalletIcon, ChevronDown, User, LogOut, ShieldCheck, Trophy,
-  Volume2, VolumeX, PanelLeftClose, PanelLeft, Menu, Sparkles, BadgeCheck,
+  Volume2, VolumeX, PanelLeftClose, PanelLeft, Sparkles, BadgeCheck,
 } from 'lucide-react'
 import { useCasino } from '@/lib/store'
 import { CURRENCIES, formatAmount } from '@/lib/currencies'
@@ -44,7 +44,7 @@ export function TopBar() {
           aria-label="Buka menu"
         >
           <span className="lg:hidden">
-            <Menu className="h-5 w-5" />
+            <span className="flex w-5 flex-col items-end gap-1" aria-hidden="true"><span className="h-px w-5 bg-current" /><span className="h-px w-3 bg-current" /></span>
           </span>
           <span className="hidden lg:inline">
             {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeft className="h-5 w-5" />}
