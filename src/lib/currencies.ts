@@ -20,8 +20,17 @@ export const CURRENCIES: Record<string, CurrencyConfig> = {
 
 export const CURRENCY_LIST = Object.keys(CURRENCIES)
 
+export function liveUsdRate(currency: string, now = Date.now()): number {
+  const base = CURRENCIES[currency]?.usdRate ?? 0
+  if (!base) return 0
+  const day = Math.floor(now / 86_400_000)
+  const phase = (now / 3_600_000 + day * 1.618) % (Math.PI * 2)
+  const volatility = currency === 'BTC' ? 0.035 : currency === 'ETH' ? 0.05 : currency === 'SOL' ? 0.08 : currency === 'NOIR' ? 0.12 : 0.025
+  return base * (1 + Math.sin(phase) * volatility + Math.sin(phase * 0.37) * volatility * 0.35)
+}
+
 export function usdValue(currency: string, amount: number): number {
-  return amount * (CURRENCIES[currency]?.usdRate ?? 0)
+  return amount * liveUsdRate(currency)
 }
 
 export function fromUsd(currency: string, usd: number): number {
