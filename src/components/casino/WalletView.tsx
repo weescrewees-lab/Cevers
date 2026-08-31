@@ -163,7 +163,7 @@ export function WalletView() {
                   {c.symbol}
                 </span>
                 <div className="min-w-0">
-                  <div className="text-[13px] font-semibold">{w.currency}</div>
+                  <div className="text-[13px] font-semibold">{c.name}</div>
                   <div className="truncate text-[10px] text-[#6a6a73]">{c.name}</div>
                 </div>
               </div>

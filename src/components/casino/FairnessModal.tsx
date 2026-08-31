@@ -55,15 +55,15 @@ export function FairnessModal() {
 
   return (
     <Dialog open={fairnessOpen} onOpenChange={setFairnessOpen}>
-      <DialogContent className="max-w-lg rounded-3xl border-white/[0.1] bg-popover p-6 sm:rounded-3xl">
+      <DialogContent className="max-w-lg rounded-[28px] border-0 bg-white p-5 text-black shadow-2xl sm:p-7">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.02em]">
+          <DialogTitle className="flex items-center gap-2 text-[20px] font-semibold tracking-[-0.03em]">
             <ShieldCheck className="h-5 w-5 text-[#30d158]" strokeWidth={2} /> Provably Fair
           </DialogTitle>
-          <DialogDescription className="text-[12.5px] leading-relaxed text-[#9d9da6]">
+          <DialogDescription className="text-[13px] leading-6 text-black/60">
             Semua hasil dihitung server dengan HMAC-SHA256. Hash server seed dikunci sebelum taruhan, lalu seed asli
             dibuka setelah rotasi. Gunakan client seed, nonce, dan seed lama untuk memverifikasi sendiri setiap taruhan.
-            <code className="mt-2 block rounded-md border border-white/[0.08] bg-surface-2 px-2 py-1.5 font-mono text-[10.5px] text-white">
+            <code className="mt-3 block rounded-2xl border border-black/10 bg-black/[0.04] px-3 py-2.5 font-mono text-[10.5px] text-black/75">
               HMAC-SHA256(serverSeed, clientSeed:nonce:cursor)
             </code>
           </DialogDescription>
@@ -119,7 +119,7 @@ function Field({ label, value, mono }: { label: string; value: string; mono?: bo
   return (
     <div>
       <label className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-[#86868b]">{label}</label>
-      <div className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-surface-2 px-3.5 py-2.5">
+      <div className="flex items-center gap-2 rounded-2xl border border-black/10 bg-black/[0.04] px-3.5 py-3">
         <span className={`min-w-0 flex-1 break-all text-xs ${mono ? 'font-mono text-white/85' : 'font-semibold'}`}>
           {value}
         </span>

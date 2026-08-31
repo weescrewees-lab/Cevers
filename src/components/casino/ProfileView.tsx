@@ -102,7 +102,7 @@ export function ProfileView() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `noir-pemulihan-${user.username}.txt`
+    a.download = `cevers-pemulihan-${user.username}.txt`
     a.click()
     URL.revokeObjectURL(url)
     sound.play('click')
@@ -110,7 +110,7 @@ export function ProfileView() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl p-4 md:p-5">
+    <div className="mx-auto w-full max-w-6xl px-3 py-4 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-5 sm:pb-5">
       {/* Kartu profil */}
       <div className="hero-soft mb-6 rounded-3xl border border-white/[0.08] p-6 md:p-7">
         <div className="flex flex-wrap items-center gap-5">

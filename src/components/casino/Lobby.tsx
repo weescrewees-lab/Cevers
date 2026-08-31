@@ -262,7 +262,7 @@ export function Lobby() {
   const recentGames = recents.map((id) => GAMES.find((g) => g.id === id)).filter(Boolean) as GameDef[]
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-4 sm:p-5">
+    <div className="mx-auto w-full max-w-7xl px-3 py-4 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-5 sm:pb-5">
       {route === 'favorit' ? (
         favGames.length > 0 ? (
           <GameRow title="Favorit Saya" items={favGames} />
