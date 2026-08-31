@@ -25,6 +25,7 @@ export const GAMES: GameDef[] = [
   { id: 'btc-crash', name: 'BTC Crash', category: 'crypto', icon: Bitcoin, tint: '#f7931a', edge: 'RTP 99%', players: 0, photo: '/images/games/btc-crash.png' },
   { id: 'hash-run', name: 'Hash Run', category: 'crypto', icon: Blocks, tint: '#ffb340', edge: 'RTP 99%', players: 0, photo: '/images/games/hash-run.png' },
   { id: 'satoshi-grid', name: 'Satoshi Grid', category: 'crypto', icon: Network, tint: '#ffd60a', edge: 'RTP 99%', players: 0, photo: '/images/games/satoshi-grid.png' },
+  { id: 'chest', name: 'Vault Chest', category: 'crypto', icon: Blocks, tint: '#d7a85b', edge: 'RTP 99%', players: 0, photo: '/images/games/hash-run.png' },
 ]
 
 /** Foto hero (bukan bagian GAMES) */

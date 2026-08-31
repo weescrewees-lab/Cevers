@@ -14,6 +14,8 @@ export interface SessionUser {
   totalWager: number
   totalBets: number
   lastFaucetAt?: string | null
+  avatarPath?: string | null
+  verification?: 'blue' | 'red' | null
   wallets: { currency: string; balance: number }[]
   fair: { serverSeedHashed: string; clientSeed: string; nonce: number }
 }

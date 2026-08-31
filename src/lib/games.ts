@@ -10,6 +10,14 @@ export interface BetResult {
 
 type RNG = () => number
 
+// ============ CHEST ============
+export function playChest(rng: RNG): BetResult {
+  const roll = rng()
+  const tier = roll < 0.58 ? 'empty' : roll < 0.84 ? 'silver' : roll < 0.97 ? 'gold' : 'vault'
+  const multiplier = tier === 'empty' ? 0 : tier === 'silver' ? 1.35 : tier === 'gold' ? 2.4 : 8
+  return { multiplier, win: multiplier > 0, state: { tier, roll } }
+}
+
 // ============ DICE ============
 export function playDice(rng: RNG, target: number, direction: 'over' | 'under'): BetResult {
   const roll = Math.floor(rng() * 10001) / 100 // 0.00 - 100.00

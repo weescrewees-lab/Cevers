@@ -21,6 +21,7 @@ import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
 import { Route as ApiAuthMeRouteImport } from './routes/api/auth/me'
 import { Route as ApiAuthRegisterRouteImport } from './routes/api/auth/register'
 import { Route as ApiGamesBlackjackRouteImport } from './routes/api/games/blackjack'
+import { Route as ApiGamesChestRouteImport } from './routes/api/games/chest'
 import { Route as ApiGamesDiceRouteImport } from './routes/api/games/dice'
 import { Route as ApiGamesKenoRouteImport } from './routes/api/games/keno'
 import { Route as ApiGamesLimboRouteImport } from './routes/api/games/limbo'
@@ -28,6 +29,8 @@ import { Route as ApiGamesMinesRouteImport } from './routes/api/games/mines'
 import { Route as ApiGamesPlinkoRouteImport } from './routes/api/games/plinko'
 import { Route as ApiGamesRouletteRouteImport } from './routes/api/games/roulette'
 import { Route as ApiGamesSlotsRouteImport } from './routes/api/games/slots'
+import { Route as ApiProfileAvatarRouteImport } from './routes/api/profile/avatar'
+import { Route as ApiProfileAvatarFileRouteImport } from './routes/api/profile/avatar-file'
 import { Route as ApiSyncRestoreRouteImport } from './routes/api/sync/restore'
 import { Route as ApiSyncSnapshotRouteImport } from './routes/api/sync/snapshot'
 import { Route as ApiWalletFaucetRouteImport } from './routes/api/wallet/faucet'
@@ -94,6 +97,11 @@ const ApiGamesBlackjackRoute = ApiGamesBlackjackRouteImport.update({
   path: '/api/games/blackjack',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiGamesChestRoute = ApiGamesChestRouteImport.update({
+  id: '/api/games/chest',
+  path: '/api/games/chest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiGamesDiceRoute = ApiGamesDiceRouteImport.update({
   id: '/api/games/dice',
   path: '/api/games/dice',
@@ -127,6 +135,16 @@ const ApiGamesRouletteRoute = ApiGamesRouletteRouteImport.update({
 const ApiGamesSlotsRoute = ApiGamesSlotsRouteImport.update({
   id: '/api/games/slots',
   path: '/api/games/slots',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProfileAvatarRoute = ApiProfileAvatarRouteImport.update({
+  id: '/api/profile/avatar',
+  path: '/api/profile/avatar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProfileAvatarFileRoute = ApiProfileAvatarFileRouteImport.update({
+  id: '/api/profile/avatar-file',
+  path: '/api/profile/avatar-file',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiSyncRestoreRoute = ApiSyncRestoreRouteImport.update({
@@ -168,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/me': typeof ApiAuthMeRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/games/blackjack': typeof ApiGamesBlackjackRoute
+  '/api/games/chest': typeof ApiGamesChestRoute
   '/api/games/dice': typeof ApiGamesDiceRoute
   '/api/games/keno': typeof ApiGamesKenoRoute
   '/api/games/limbo': typeof ApiGamesLimboRoute
@@ -175,6 +194,8 @@ export interface FileRoutesByFullPath {
   '/api/games/plinko': typeof ApiGamesPlinkoRoute
   '/api/games/roulette': typeof ApiGamesRouletteRoute
   '/api/games/slots': typeof ApiGamesSlotsRoute
+  '/api/profile/avatar': typeof ApiProfileAvatarRoute
+  '/api/profile/avatar-file': typeof ApiProfileAvatarFileRoute
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
@@ -194,6 +215,7 @@ export interface FileRoutesByTo {
   '/api/auth/me': typeof ApiAuthMeRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/games/blackjack': typeof ApiGamesBlackjackRoute
+  '/api/games/chest': typeof ApiGamesChestRoute
   '/api/games/dice': typeof ApiGamesDiceRoute
   '/api/games/keno': typeof ApiGamesKenoRoute
   '/api/games/limbo': typeof ApiGamesLimboRoute
@@ -201,6 +223,8 @@ export interface FileRoutesByTo {
   '/api/games/plinko': typeof ApiGamesPlinkoRoute
   '/api/games/roulette': typeof ApiGamesRouletteRoute
   '/api/games/slots': typeof ApiGamesSlotsRoute
+  '/api/profile/avatar': typeof ApiProfileAvatarRoute
+  '/api/profile/avatar-file': typeof ApiProfileAvatarFileRoute
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
@@ -221,6 +245,7 @@ export interface FileRoutesById {
   '/api/auth/me': typeof ApiAuthMeRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/games/blackjack': typeof ApiGamesBlackjackRoute
+  '/api/games/chest': typeof ApiGamesChestRoute
   '/api/games/dice': typeof ApiGamesDiceRoute
   '/api/games/keno': typeof ApiGamesKenoRoute
   '/api/games/limbo': typeof ApiGamesLimboRoute
@@ -228,6 +253,8 @@ export interface FileRoutesById {
   '/api/games/plinko': typeof ApiGamesPlinkoRoute
   '/api/games/roulette': typeof ApiGamesRouletteRoute
   '/api/games/slots': typeof ApiGamesSlotsRoute
+  '/api/profile/avatar': typeof ApiProfileAvatarRoute
+  '/api/profile/avatar-file': typeof ApiProfileAvatarFileRoute
   '/api/sync/restore': typeof ApiSyncRestoreRoute
   '/api/sync/snapshot': typeof ApiSyncSnapshotRoute
   '/api/wallet/faucet': typeof ApiWalletFaucetRoute
@@ -249,6 +276,7 @@ export interface FileRouteTypes {
     | '/api/auth/me'
     | '/api/auth/register'
     | '/api/games/blackjack'
+    | '/api/games/chest'
     | '/api/games/dice'
     | '/api/games/keno'
     | '/api/games/limbo'
@@ -256,6 +284,8 @@ export interface FileRouteTypes {
     | '/api/games/plinko'
     | '/api/games/roulette'
     | '/api/games/slots'
+    | '/api/profile/avatar'
+    | '/api/profile/avatar-file'
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
@@ -275,6 +305,7 @@ export interface FileRouteTypes {
     | '/api/auth/me'
     | '/api/auth/register'
     | '/api/games/blackjack'
+    | '/api/games/chest'
     | '/api/games/dice'
     | '/api/games/keno'
     | '/api/games/limbo'
@@ -282,6 +313,8 @@ export interface FileRouteTypes {
     | '/api/games/plinko'
     | '/api/games/roulette'
     | '/api/games/slots'
+    | '/api/profile/avatar'
+    | '/api/profile/avatar-file'
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
@@ -301,6 +334,7 @@ export interface FileRouteTypes {
     | '/api/auth/me'
     | '/api/auth/register'
     | '/api/games/blackjack'
+    | '/api/games/chest'
     | '/api/games/dice'
     | '/api/games/keno'
     | '/api/games/limbo'
@@ -308,6 +342,8 @@ export interface FileRouteTypes {
     | '/api/games/plinko'
     | '/api/games/roulette'
     | '/api/games/slots'
+    | '/api/profile/avatar'
+    | '/api/profile/avatar-file'
     | '/api/sync/restore'
     | '/api/sync/snapshot'
     | '/api/wallet/faucet'
@@ -328,6 +364,7 @@ export interface RootRouteChildren {
   ApiAuthMeRoute: typeof ApiAuthMeRoute
   ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
   ApiGamesBlackjackRoute: typeof ApiGamesBlackjackRoute
+  ApiGamesChestRoute: typeof ApiGamesChestRoute
   ApiGamesDiceRoute: typeof ApiGamesDiceRoute
   ApiGamesKenoRoute: typeof ApiGamesKenoRoute
   ApiGamesLimboRoute: typeof ApiGamesLimboRoute
@@ -335,6 +372,8 @@ export interface RootRouteChildren {
   ApiGamesPlinkoRoute: typeof ApiGamesPlinkoRoute
   ApiGamesRouletteRoute: typeof ApiGamesRouletteRoute
   ApiGamesSlotsRoute: typeof ApiGamesSlotsRoute
+  ApiProfileAvatarRoute: typeof ApiProfileAvatarRoute
+  ApiProfileAvatarFileRoute: typeof ApiProfileAvatarFileRoute
   ApiSyncRestoreRoute: typeof ApiSyncRestoreRoute
   ApiSyncSnapshotRoute: typeof ApiSyncSnapshotRoute
 }
@@ -425,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiGamesBlackjackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/games/chest': {
+      id: '/api/games/chest'
+      path: '/api/games/chest'
+      fullPath: '/api/games/chest'
+      preLoaderRoute: typeof ApiGamesChestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/games/dice': {
       id: '/api/games/dice'
       path: '/api/games/dice'
@@ -472,6 +518,20 @@ declare module '@tanstack/react-router' {
       path: '/api/games/slots'
       fullPath: '/api/games/slots'
       preLoaderRoute: typeof ApiGamesSlotsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/profile/avatar': {
+      id: '/api/profile/avatar'
+      path: '/api/profile/avatar'
+      fullPath: '/api/profile/avatar'
+      preLoaderRoute: typeof ApiProfileAvatarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/profile/avatar-file': {
+      id: '/api/profile/avatar-file'
+      path: '/api/profile/avatar-file'
+      fullPath: '/api/profile/avatar-file'
+      preLoaderRoute: typeof ApiProfileAvatarFileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/sync/restore': {
@@ -541,6 +601,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAuthMeRoute: ApiAuthMeRoute,
   ApiAuthRegisterRoute: ApiAuthRegisterRoute,
   ApiGamesBlackjackRoute: ApiGamesBlackjackRoute,
+  ApiGamesChestRoute: ApiGamesChestRoute,
   ApiGamesDiceRoute: ApiGamesDiceRoute,
   ApiGamesKenoRoute: ApiGamesKenoRoute,
   ApiGamesLimboRoute: ApiGamesLimboRoute,
@@ -548,6 +609,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiGamesPlinkoRoute: ApiGamesPlinkoRoute,
   ApiGamesRouletteRoute: ApiGamesRouletteRoute,
   ApiGamesSlotsRoute: ApiGamesSlotsRoute,
+  ApiProfileAvatarRoute: ApiProfileAvatarRoute,
+  ApiProfileAvatarFileRoute: ApiProfileAvatarFileRoute,
   ApiSyncRestoreRoute: ApiSyncRestoreRoute,
   ApiSyncSnapshotRoute: ApiSyncSnapshotRoute,
 }

@@ -22,6 +22,8 @@ export const Route = createFileRoute('/api/auth/me')({
             totalWager: user.totalWager,
             totalBets: user.totalBets,
             lastFaucetAt: user.lastFaucetAt,
+            avatarPath: user.avatarPath ? '/api/profile/avatar-file' : null,
+            verification: user.username === 'cevs' ? 'blue' : user.verification,
             wallets: user.wallets.map((w) => ({ currency: w.currency, balance: w.balance })),
             fair: {
               serverSeedHashed: hashSeed(user.serverSeed),

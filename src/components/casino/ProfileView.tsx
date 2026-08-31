@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import { KeyRound, Copy, Download, EyeOff } from 'lucide-react'
+import { KeyRound, Copy, Download, EyeOff, Camera, BadgeCheck, BadgeX } from 'lucide-react'
 import { useCasino } from '@/lib/store'
 import { apiGet } from '@/lib/apiClient'
 import { CURRENCIES, formatAmount } from '@/lib/currencies'
@@ -32,6 +32,22 @@ export function ProfileView() {
   const [filter, setFilter] = useState<'all' | 'win' | 'lose'>('all')
   const [recCode, setRecCode] = useState<string | null>(null)
   const [recBusy, setRecBusy] = useState(false)
+  const [avatarBusy, setAvatarBusy] = useState(false)
+
+  const uploadAvatar = async (file: File) => {
+    setAvatarBusy(true)
+    try {
+      const body = new FormData()
+      body.append('file', file)
+      const response = await fetch('/api/profile/avatar', { method: 'POST', body, credentials: 'include' })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Upload gagal')
+      await useCasino.getState().refreshMe()
+      toast.success('Foto profil tersimpan aman')
+    } catch (error) {
+      toast.error((error as Error).message)
+    } finally { setAvatarBusy(false) }
+  }
 
   useEffect(() => {
     if (!user) return
@@ -98,18 +114,17 @@ export function ProfileView() {
       {/* Kartu profil */}
       <div className="hero-soft mb-6 rounded-3xl border border-white/[0.08] p-6 md:p-7">
         <div className="flex flex-wrap items-center gap-5">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-xl font-black uppercase text-black">
-            {user.username.slice(0, 2)}
-          </div>
+          <label className="group relative flex h-16 w-16 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white text-xl font-black uppercase text-black">
+            {user.avatarPath ? <img src={user.avatarPath} alt="Foto profil" className="h-full w-full object-cover" /> : user.username.slice(0, 2)}
+            <span className="absolute inset-0 hidden items-center justify-center bg-black/60 text-white group-hover:flex"><Camera className="h-4 w-4" /></span>
+            <input type="file" accept="image/*" className="sr-only" disabled={avatarBusy} onChange={(e) => { const file = e.target.files?.[0]; if (file) void uploadAvatar(file) }} />
+          </label>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2.5">
-              <h2 className="text-[24px] font-semibold tracking-[-0.025em]">{user.username}</h2>
-              <span
-                className="rounded-full px-2.5 py-1 text-[11px] font-bold"
-                style={{ backgroundColor: `${vip.tier.color}1c`, color: vip.tier.color }}
-              >
-                {vip.tier.name}
-              </span>
+              <h2 className="flex items-center gap-1.5 text-[24px] font-semibold tracking-[-0.025em]">{user.username}{user.verification === 'blue' ? <BadgeCheck className="h-5 w-5 text-sky-400" aria-label="Terverifikasi biru" /> : user.verification === 'red' ? <BadgeX className="h-5 w-5 text-rose-400" aria-label="Terverifikasi merah" /> : null}</h2>
+              <span className="rounded-full px-2.5 py-1 text-[11px] font-bold" style={{ backgroundColor: `${vip.tier.color}1c`, color: vip.tier.color }}>{vip.tier.name}</span>
+              {user.username === 'cevs' && <span className="inline-flex items-center gap-1 rounded-full bg-sky-400/15 px-2.5 py-1 text-[11px] font-bold text-sky-300"><BadgeCheck className="h-3.5 w-3.5" /> Blue verified</span>}
+              {user.username === 'cevs' && <span className="inline-flex items-center gap-1 rounded-full bg-rose-400/15 px-2.5 py-1 text-[11px] font-bold text-rose-300"><BadgeX className="h-3.5 w-3.5" /> Red verified</span>}
             </div>
             <div className="mt-2 grid grid-cols-3 gap-4 text-[13px]">
               <div>

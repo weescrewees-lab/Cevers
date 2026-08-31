@@ -11,6 +11,7 @@ import { MinesGame } from '@/components/casino/games/MinesGame'
 import { PlinkoGame } from '@/components/casino/games/PlinkoGame'
 import { KenoGame } from '@/components/casino/games/KenoGame'
 import { BtcCrashGame, HashRunGame, SatoshiGridGame } from '@/components/casino/games/CryptoGames'
+import { ChestGame } from '@/components/casino/games/ChestGame'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ChevronDown } from 'lucide-react'
 import { sound } from '@/lib/sound'
@@ -348,6 +349,7 @@ export function GameView({ gameId }: { gameId: string }) {
       case 'btc-crash': return <BtcCrashGame />
       case 'hash-run': return <HashRunGame />
       case 'satoshi-grid': return <SatoshiGridGame />
+      case 'chest': return <ChestGame />
       default: return <DiceGame />
     }
   }
