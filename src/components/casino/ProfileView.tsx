@@ -67,7 +67,6 @@ export function ProfileView() {
     )
   }
 
-  const winRate = bets.length > 0 ? (bets.filter((b) => b.win).length / bets.length) * 100 : 0
   const vip = vipOf(user.totalWager)
   const filtered = filter === 'all' ? bets : bets.filter((b) => (filter === 'win' ? b.win : !b.win))
 
@@ -125,22 +124,6 @@ export function ProfileView() {
               <span className="rounded-full px-2.5 py-1 text-[11px] font-bold" style={{ backgroundColor: `${vip.tier.color}1c`, color: vip.tier.color }}>{vip.tier.name}</span>
               {user.username === 'cevs' && <span className="inline-flex items-center gap-1 rounded-full bg-sky-400/15 px-2.5 py-1 text-[11px] font-bold text-sky-300"><BadgeCheck className="h-3.5 w-3.5" /> Blue verified</span>}
               {user.username === 'cevs' && <span className="inline-flex items-center gap-1 rounded-full bg-rose-400/15 px-2.5 py-1 text-[11px] font-bold text-rose-300"><BadgeX className="h-3.5 w-3.5" /> Red verified</span>}
-            </div>
-            <div className="mt-2 grid grid-cols-3 gap-4 text-[13px]">
-              <div>
-                <div className="text-[10.5px] uppercase tracking-wider text-[#6a6a73]">Wager Total</div>
-                <div className="font-semibold tabular-nums">${Math.round(user.totalWager).toLocaleString('id-ID')}</div>
-              </div>
-              <div>
-                <div className="text-[10.5px] uppercase tracking-wider text-[#6a6a73]">Total Taruhan</div>
-                <div className="font-semibold tabular-nums">{user.totalBets.toLocaleString('id-ID')}</div>
-              </div>
-              <div className="min-w-0">
-                <div className="text-[10.5px] uppercase tracking-wider text-[#6a6a73]">
-                  Win Rate <span className="hidden sm:inline">(50 terakhir)</span>
-                </div>
-                <div className="font-semibold tabular-nums text-[#30d158]">{winRate.toFixed(0)}%</div>
-              </div>
             </div>
           </div>
           <button onClick={() => setRoute('wallet')} className="btn-primary h-10 px-5 text-[13.5px]">
@@ -279,8 +262,8 @@ export function ProfileView() {
           ))}
         </div>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-white/[0.08]">
-        <table className="w-full min-w-[560px] text-[13px]">
+      <div className="max-h-72 overflow-auto rounded-2xl border border-white/[0.08]">
+        <table className="w-full min-w-[560px] text-[12px]">
           <thead className="bg-surface-2 text-left text-[10.5px] uppercase tracking-wider text-[#6a6a73]">
             <tr>
               <th className="px-4 py-3 font-semibold">Permainan</th>
