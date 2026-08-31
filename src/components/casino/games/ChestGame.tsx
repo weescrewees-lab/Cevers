@@ -8,7 +8,8 @@ import { apiPost } from '@/lib/apiClient'
 import { toast } from 'sonner'
 
 export function ChestGame() {
-  const { activeCurrency, refreshMe } = useCasino()
+  const { refreshMe } = useCasino()
+  const activeCurrency = 'BTC'
   const [amount, setAmount] = useState(10)
   const [busy, setBusy] = useState(false)
   const [opened, setOpened] = useState(false)

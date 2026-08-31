@@ -92,7 +92,7 @@ export function BetPanel({
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-1 rounded-lg px-2 py-1.5 text-[11.5px] font-bold transition hover:bg-white/[0.06]">
-                  <span style={{ color: cfg?.color }}>{currency}</span>
+                  <span style={{ color: cfg?.color }}>{CURRENCIES[currency]?.name ?? currency}</span>
                   <ChevronDown className="h-3 w-3" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="rounded-xl border-border bg-popover p-1">

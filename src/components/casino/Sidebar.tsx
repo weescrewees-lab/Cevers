@@ -88,8 +88,8 @@ function AccountCard() {
       className="mx-2 mt-3 w-[calc(100%-16px)] rounded-2xl border border-white/[0.08] bg-surface-2 p-3.5 text-left transition hover:border-white/[0.16] hover:bg-surface-3"
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[13px] font-black uppercase text-black">
-          {user.username.slice(0, 2)}
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white text-[13px] font-black uppercase text-black">
+          {user.avatarPath ? <img src={user.avatarPath} alt="" className="h-full w-full object-cover" /> : user.username.slice(0, 2)}
         </span>
         <div className="min-w-0 flex-1">
           <div className="truncate text-[13.5px] font-semibold leading-tight">{user.username}</div>
@@ -164,7 +164,7 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
             {tokenCfg.symbol}
           </span>
           <div className="min-w-0 flex-1">
-            <div className="text-[12px] font-semibold">CEVERS Token</div>
+            <div className="text-[12px] font-semibold">Cevers Coin</div>
             <div className="flex items-center gap-1 text-[10.5px] text-[#86868b]">
               <TrendingUp className="h-3 w-3 text-[#30d158]" />
               $0.298 <span className="font-semibold text-[#30d158]">+3.15%</span>
