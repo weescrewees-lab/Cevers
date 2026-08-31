@@ -355,7 +355,7 @@ export function GameView({ gameId }: { gameId: string }) {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-4 sm:p-5">
+    <div className="mx-auto w-full max-w-7xl px-3 py-4 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-5 sm:pb-5">
       <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
         <button
           onClick={() => setRoute('lobby')}

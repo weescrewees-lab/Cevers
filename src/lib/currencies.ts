@@ -15,7 +15,7 @@ export const CURRENCIES: Record<string, CurrencyConfig> = {
   ETH: { code: 'ETH', name: 'Ethereum', symbol: 'Ξ', color: '#8A92B2', usdRate: 3520, decimals: 6, minBet: 0.00003, maxBet: 10 },
   SOL: { code: 'SOL', name: 'Solana', symbol: '◎', color: '#9945FF', usdRate: 162, decimals: 4, minBet: 0.001, maxBet: 200 },
   TRX: { code: 'TRX', name: 'Tron', symbol: 'T', color: '#EF0027', usdRate: 0.12, decimals: 2, minBet: 1, maxBet: 100000 },
-  NOIR: { code: 'NOIR', name: 'CEVERS Token', symbol: '✦', color: '#7C5CFC', usdRate: 0.298, decimals: 2, minBet: 1, maxBet: 250000 },
+  NOIR: { code: 'NOIR', name: 'Cevers Coin', symbol: 'C', color: '#8B7CFF', usdRate: 0.298, decimals: 2, minBet: 1, maxBet: 250000 },
 }
 
 export const CURRENCY_LIST = Object.keys(CURRENCIES)

@@ -15,7 +15,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Kasino sosial dengan 11 permainan provably fair, dompet multi-kripto, dan tantangan wager. Koin virtual — tanpa uang sungguhan.",
+          "Kasino sosial dengan 11 permainan provably fair, dompet multi-kripto termasuk Cevers Coin, dan tantangan wager. Koin virtual — tanpa uang sungguhan.",
       },
       { name: "theme-color", content: "#000000" },
     ],

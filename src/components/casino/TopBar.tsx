@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   Search, Wallet as WalletIcon, ChevronDown, User, LogOut, ShieldCheck, Trophy,
-  Volume2, VolumeX, PanelLeftClose, PanelLeft, Menu, Sparkles,
+  Volume2, VolumeX, PanelLeftClose, PanelLeft, Menu, Sparkles, BadgeCheck,
 } from 'lucide-react'
 import { useCasino } from '@/lib/store'
 import { CURRENCIES, formatAmount } from '@/lib/currencies'
@@ -84,7 +84,7 @@ export function TopBar() {
                       {wallet ? formatAmount(activeCurrency, wallet.balance) : '0'}
                     </span>
                     <span className="text-[11px] font-bold" style={{ color: cfg?.color }}>
-                      {activeCurrency}
+                      {cfg?.name ?? activeCurrency}
                     </span>
                     <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
                   </button>
@@ -112,7 +112,7 @@ export function TopBar() {
                           >
                             {c.symbol}
                           </span>
-                          <span className="text-[13px] font-semibold">{w.currency}</span>
+                          <span className="text-[13px] font-semibold">{c.name}</span>
                         </span>
                         <span className="font-mono text-[13px] tabular-nums">{formatAmount(w.currency, w.balance)}</span>
                       </DropdownMenuItem>
@@ -141,9 +141,10 @@ export function TopBar() {
                     className="flex h-9 items-center gap-2 rounded-full border border-border bg-surface-2 pl-1 pr-3 transition hover:border-white/20 hover:bg-surface-3"
                     aria-label="Menu pengguna"
                   >
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-black uppercase text-black">
-                      {user.username.slice(0, 2)}
+                    <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full bg-white text-[11px] font-black uppercase text-black">
+                      {user.avatarPath ? <img src={user.avatarPath} alt="" className="h-full w-full object-cover" /> : user.username.slice(0, 2)}
                     </span>
+                    {user.username === 'cevs' && <BadgeCheck className="hidden h-4 w-4 text-sky-400 sm:block" aria-label="Terverifikasi" />}
                     <span
                       className="hidden text-[11px] font-bold sm:block"
                       style={{ color: vip.tier.color }}
