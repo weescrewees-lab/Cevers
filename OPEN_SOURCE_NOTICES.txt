@@ -1,0 +1,5 @@
+Cevers game integration notice
+
+Laravel Social Gaming reference: https://github.com/promexdotme/laravel-social-gaming
+
+Cevers does not bundle or run the Laravel application. The repository was used as an architectural reference for lightweight virtual-credit game concepts. Game UI, wallet integration, server settlement, currency handling, and fairness verification remain Cevers code.

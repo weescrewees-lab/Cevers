@@ -6,7 +6,6 @@ import { BetPanel } from './GameView'
 import { useCasino } from '@/lib/store'
 import { apiPost } from '@/lib/apiClient'
 import { toast } from 'sonner'
-import { PhaserCryptoScene } from './PhaserCryptoScene'
 
 export function ChestGame() {
   const { activeCurrency, refreshMe } = useCasino()
@@ -23,9 +22,6 @@ export function ChestGame() {
     } catch (error) { toast.error((error as Error).message) } finally { setBusy(false) }
   }
   return <div className="grid gap-5 lg:grid-cols-[1fr_320px]">
-    <div>
-      <PhaserCryptoScene kind="chest" onAction={() => void open()} />
-    </div>
     <div className="cevers-asset-chest relative flex min-h-[360px] flex-col items-center justify-center overflow-hidden rounded-3xl border border-white/[0.08] bg-cover bg-center bg-surface p-8 text-center">
       <div className={`mb-6 flex size-32 items-center justify-center rounded-[2rem] border ${opened ? 'border-amber-300/70 bg-amber-300/10' : 'border-white/10 bg-white/[0.04]'}`}><PackageOpen className="size-16 text-amber-300" strokeWidth={1.2} /></div>
       <h2 className="text-xl font-semibold">Vault Chest</h2><p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">Satu peti, satu hasil dari engine server. Hasil payout ditampilkan setelah transaksi berhasil.</p>
